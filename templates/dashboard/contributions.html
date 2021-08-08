@@ -1,0 +1,58 @@
+{% extends 'partials/base.html' %}
+{% block title %}contributions Page {% endblock%}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+{% include 'partials/topnav.html' %}
+<!-- Ontribution Table Section -->
+ <div class="container">
+   <div class="row my-4">
+     <div class="col-md-4">
+       {% for message in messages%}
+       {% if message %}
+       <div class="alert alert-{{message.tags}}">
+         {{message}}
+       </div>
+       {% endif %}
+       {% endfor%}
+       <div class="border p-3 bg-white">
+         <h4>New Contribution</h4>
+         <hr>
+         <form  method="post">
+           {% csrf_token %}
+           {{form|crispy}}
+           <input class="btn btn-success btn-block" type="submit" value="Add Contributions">
+         </form>
+       </div>
+     </div>
+     <div class="col-md-8">
+       <table class="table bg-white">
+         <thead class="bg-info">
+           <tr class="text-white">
+             <th scope="col">Name</th>
+             <th scope="col">Amount</th>
+             <th scope="col">Month</th>
+             <th scope="col" >Action</th>
+           </tr>
+         </thead>
+         <tbody>
+           {% for members_contribution in members_contributions%}
+           <tr>
+             <td>{{members_contribution.name}}</td>
+             <td>{{members_contribution.amount}}</td>
+             <td>{{members_contribution.month}}</td>
+             <td>
+               <a href="{%url 'dashboard-contributions-update' members_contribution.id%}" class="btn btn-info btn-sm">Edit</a>
+               <a href="{%url 'dashboard-contributions-delete' members_contribution.id%}" class="btn btn-danger btn-sm">Delete</a>
+             </td>
+           </tr>
+           {% endfor%}
+         </tbody>
+       </table>
+     </div>
+   </div>
+</div>
+
+ <!-- End Contribution Table -->
+{% endblock%}

@@ -1,0 +1,66 @@
+{% load crispy_forms_tags %}
+
+<div class="container">
+
+<div>
+    <div class="row mt-4">
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-header">
+                    Make Request
+                </div>
+                <div class="card-body">
+                    <form method="POST">
+                      {% csrf_token%}
+                      {{form|crispy}}
+                        <input class="btn btn-info btn-block" type="submit" value="Make Request">
+                    </form>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">
+                    Orders Records
+                </div>
+                <div class="card-body">
+                    <table class="table bg-white">
+                        <thead class="bg-info text-white">
+
+                            <tr>
+                                <th scope="col">Request ID</th>
+                                <th scope="col">Amount</th>
+                                <th scope="col">Date</th>
+                                <th scope="col">Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {% for Loans_application in Loans_application%}
+                        {% if Loans_application.members == user%}
+                          {% if Loans_application.is_approved%}
+                          <tr class="table-success">
+                              <td>TGC000{{Loans_application.id}}</td>
+                              <td>{{Loans_application.loan_amount}}</td>
+                              <td>{{Loans_application.date}}</td>
+                              <td>Approved</td>
+                          </tr>
+                          {% else %}
+                          <tr class="table-danger">
+                              <td>TGC000{{Loans_application.id}}</td>
+                              <td>{{Loans_application.loan_amount}}</td>
+                              <td>{{Loans_application.date}}</td>
+                              <td>Pending</td>
+                          </tr>
+                          {% endif %}
+
+                        {% endif%}
+                        {%endfor%}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>

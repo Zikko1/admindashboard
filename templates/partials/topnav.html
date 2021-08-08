@@ -1,0 +1,54 @@
+<!-- Main Header -->
+<div class="container">
+<div class="row mt-4">
+  <div class="col-md-4">
+    <div class="card">
+      <div class="card-header bg-info">
+        Information
+      </div>
+      <div class="card-body">
+        <marquee behavior="" direction="">
+          <h3 class="my-4">This is the information</h3>
+        </marquee>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-8">
+    <div class="card">
+      <div class="card-header bg-info">
+        Statistics
+      </div>
+      <div class="card-body">
+      <div class="row">
+        <div class="col-md-4">
+          <a class="text-decoration-none text-dark" href="{% url 'dashboard-members'%}">
+            <div class="card my-card shadow text-center p-3">
+              <h4>Members <i class="fas fa-users"></i></h4>
+              <h3>{{admins_count}}</h3>
+            </div>
+          </a>
+        </div>
+        <div class="col-md-4">
+          <a class="text-decoration-none text-dark" href="{% url 'dashboard-contributions'%}">
+            <div class="card my-card shadow text-center p-3">
+              <h4>Payments <i class="far fa-money-bill-alt"></i></h4>
+              <h3>{{contribution_count}}</h3>
+            </div>
+          </a>
+        </div>
+        <div class="col-md-4">
+          <a class="text-decoration-none text-dark" href="{% url 'dashboard-loans'%}">
+            <div class="card my-card shadow text-center p-3">
+              <h4>Loans <i class="far fa-money-bill-alt"></i></h4>
+              <h3>{{loan_count}}</h3>
+            </div>
+          </a>
+        </div>
+      </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+<!-- End Main Header -->

@@ -1,0 +1,67 @@
+{% extends 'partials/base.html' %}
+{% block title %}Loan Page {% endblock%}
+
+{% block content %}
+
+{% include 'partials/topnav.html' %}
+<!-- Loans Table Section -->
+ <div class="container">
+   <div class="row my-4">
+     <div class="col-md-4">
+
+     </div>
+     <div class="col-md-8">
+       <table class="table bg-white">
+         <thead class="bg-info">
+           <tr class="text-white">
+             <th scope="col">Loan ID</th>
+             <th scope="col">Requested By</th>
+             <th scope="col">Amount</th>
+             <th scope="col">Date</th>
+             <th scope="col">Loan Status</th>
+           </tr>
+         </thead>
+         <tbody>
+           {% for Loans_application in Loans_application%}
+           {% if Loans_application.is_approved%}
+           <tr class="table-success">
+             <td>TGC000{{Loans_application.id}}</td>
+             <td>{{Loans_application.members}}</td>
+             <td>{{Loans_application.loan_amount}}</td>
+             <td>{{Loans_application.date}}</td>
+             <td><a href="{% url 'dashboard-pending' Loans_application.id%}">Approved</a></td>
+           </tr>
+          {% else%}
+          <tr class="table-danger">
+            <td>TGC000{{Loans_application.id}}</td>
+            <td>{{Loans_application.members}}</td>
+            <td>{{Loans_application.loan_amount}}</td>
+            <td>{{Loans_application.date}}</td>
+            <td><a href="{% url 'dashboard-approved' Loans_application.id%}">Pending</a></td>
+
+          </tr>
+           {% endif%}
+           {% endfor%}
+         </tbody>
+       </table>
+       <nav aria-label="Page navigation example">
+            <ul class="pagination justify-content-end">
+                <li class="page-item"> <a class="page-link" href="?pg=1"><<</a></li>
+                {% if Loans_application.has_previous %}
+                    <li class="page-item"><a class="page-link" href="?pg={{ Loans_application.previous_page_number }}">{{ Loans_application.previous_page_number }}</a></li>
+                {% endif %}
+
+                <li class="page-item"><a class="page-link" href="?pg={{ Loans_application.number }}">{{ Loans_application.number }}</a></li>
+
+                {% if Loans_application.has_next %}
+                    <li class="page-item"><a class="page-link" href="?pg={{ Loans_application.next_page_number }}">{{ Loans_application.next_page_number }}</a></li>
+                {% endif %}
+                <li class="page-item"><a class="page-link" href="?pg={{ Loans_application.paginator.num_pages }}">>></a></li>
+            </ul>
+        </nav>
+     </div>
+   </div>
+</div>
+
+ <!-- End Loans Table -->
+{% endblock%}

@@ -1,0 +1,24 @@
+{% extends 'partials/base.html' %}
+{% block title %}Update Contribution {% endblock%}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+<div class="container">
+  <div class="row mt-5">
+    <div class="col-md-6 offset-md-3">
+      <div class="border bg-white p-3">
+        <h3>Edit Contribution</h3>
+        <hr>
+
+        <form class="" method="post">
+          {% csrf_token %}
+          {{form|crispy }}
+          <a class="btn btn-secondary" href="{%url 'dashboard-contributions'%}">Cancel</a>
+            <input class="btn btn-info" type="submit" name="" value="Update">
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock%}
