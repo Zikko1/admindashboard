@@ -1,1 +1,1 @@
-web: gunicorn.gtcadmin.wsgi
+web: gunicorn.gtcadmin.wsgi --log-file -
