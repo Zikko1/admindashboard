@@ -122,7 +122,7 @@ STATICFILES_DIRS = [
 BASE_DIR / "static"
 ]
 
-STATIC_ROOT = (BASE_DIR/"asert/")
+STATIC_ROOT = os.path.join(BASE_DIR/"asert/")
 
 MEDIA_ROOT = (BASE_DIR / 'media')
 
