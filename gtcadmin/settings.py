@@ -1,4 +1,3 @@
-import django_heroku
 import os
 import environ
 
@@ -20,7 +19,7 @@ SECRET_KEY = env('DJANGO_SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env('DJANGO_DEBUG')
 
-ALLOWED_HOSTS = ['127.0.0.1','localhost','thegentlemensclub.herokuapp.com']
+ALLOWED_HOSTS = ['127.0.0.1','localhost']
 
 
 # Application definition
@@ -38,7 +37,6 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
-    'whitenoise.middleware.WhiteNoiseMiddleware'
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -123,7 +121,7 @@ STATICFILES_DIRS = [
 BASE_DIR / "static"
 ]
 
-STATIC_ROOT = os.path.join(BASE_DIR/"asert/",'staticfiles')
+STATIC_ROOT = os.path.join(BASE_DIR/"asert/")
 
 MEDIA_ROOT = (BASE_DIR / 'media')
 
@@ -144,5 +142,3 @@ EMAIL_HOST_PASSWORD = env('DJANGO_EMAIL_HOST_PASSWORD')
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-django_heroku.settings(locals())
